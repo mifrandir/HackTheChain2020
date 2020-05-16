@@ -3,31 +3,24 @@ package htc.crypto.rsa;
 import java.security.*;
 
 public class RSAPair {
-  
-  /* Initialize string variables for private and public keys */
-  public String privateKey;
-  public String publicKey;
-  
-  public void generateKeyPair() {
-  
+  private static final String ALGORITHM = "RSA";
+
+  /**
+   * Generate a new KeyPair suitable for RSA encryption.
+   * 
+   * @return A new KeyPair.
+   */
+  public static KeyPair generate() {
     try {
-      /* Create new instance of KeyPair class */
-      KeyPair keyPair;
-      String algorithm = "RSA"; // Using RSA algorithm to encrypt keys
-    
+
       /* Generate new key pair using the algorithm */
-      keyPair = KeyPairGenerator.getInstance(algorithm).generateKeyPair();
-    
-      /* generate private key to sign and decrypt data */
-      privateKey = keyPair.getPrivate().toString();
-    
-      /* generate public key to verify signatures and encrypt data */
-      publicKey = keyPair.getPublic().toString();
+      return KeyPairGenerator.getInstance(RSAPair.ALGORITHM).generateKeyPair();
+
     }
-  
+
     catch (Exception e) {
       throw new RuntimeException(e);
     }
   }
-  
+
 }
