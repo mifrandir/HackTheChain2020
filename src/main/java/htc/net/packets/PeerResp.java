@@ -3,7 +3,6 @@ package htc.net.packets;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.List;
 import htc.net.Peer;
 import htc.net.Packet;
 import htc.net.PacketType;

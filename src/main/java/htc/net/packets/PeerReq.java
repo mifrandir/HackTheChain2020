@@ -1,6 +1,5 @@
 package htc.net.packets;
 
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
