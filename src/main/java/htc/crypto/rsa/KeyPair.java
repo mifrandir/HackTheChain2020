@@ -1,37 +1,29 @@
 package htc.crypto.rsa;
 
+
 public class KeyPair {
-  /** The key that's used to sign and decrypt messages. */
-  private Key prv;
-
-  /** The key that's used to verify signatures and encrypt messages. */
-  private Key pub;
-
-  /**
-   * Returns the private key associated with this pair.
-   * 
-   * @return private key
-   */
-  public Key getPrivate() {
-    return this.prv;
+  
+  /* Initialize string variables for private and public keys */
+  public String privateKey;
+  public String publicKey;
+  
+  try {
+    /* Create new instance of KeyPair class */
+    KeyPair keyPair;
+    String algorithm = "RSA"; // Using RSA algorithm to encrypt keys
+    
+    /* Generate new key pair using the algorithm */
+    keyPair = KeyPairGenerator.getInstance(algorithm).generateKeyPair();
+    
+    /* generate private key to sign and decrypt data */
+    privateKey = keyPair.getPrivate().toString();
+    
+    /* generate public key to verify signatures and encrypt data */
+    publicKey = keyPair.getPublic().toString();
   }
-
-  /**
-   * Returns the public key associated with this pair.
-   * 
-   * @return public key
-   */
-  public Key getPublic() {
-    return this.pub;
+  
+  catch (Exception e) {
+    throw new RuntimeException(e)
   }
-
-  /**
-   * Constructor to create a new key pair.
-   * 
-   * @return A new, unique key pair.
-   */
-  public static KeyPair generate() {
-    // TODO: Implement key pair generation.
-    throw new UnsupportedOperationException();
-  }
+  
 }
