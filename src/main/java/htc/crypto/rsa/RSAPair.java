@@ -2,7 +2,7 @@ package htc.crypto.rsa;
 
 import java.security.*;
 
-public class KeyPair {
+public class RSAPair {
   
   /* Initialize string variables for private and public keys */
   public String privateKey;
@@ -24,7 +24,7 @@ public class KeyPair {
   }
   
   catch (Exception e) {
-    throw new RuntimeException(e)
+    throw new RuntimeException(e);
   }
   
 }
