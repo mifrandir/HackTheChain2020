@@ -1,8 +1,8 @@
 package htc.chain;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,4 +85,32 @@ public class Block {
         this.data = data;
     }
 
+    public boolean equals(Object o)
+    {
+   	 if (this == o)
+   	 {
+   		 return true;
+   	 }
+   	 if (o == null)
+   	 {
+   		 return false;
+   	 }
+   	 if (getClass() != o.getClass())
+   	 {
+   		 return false;	 
+   	 }
+   	 Block block = (Block) o; 
+   	 return Objects.equals(hash, block.hash) 
+   			 && Objects.equals(previousHash, block.previousHash) 
+   			 && Objects.equals(data, block.data) 
+   			 && Objects.equals(timeStamp, block.timeStamp)
+   			 && Objects.equals(nonce, block.nonce);
+   	     	 
+   		 
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(hash, previousHash, data, timeStamp, nonce);
+    }
 }
+
