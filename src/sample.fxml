@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="CryptoWallet" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450" prefWidth="350">
+         <children>
+            <TextField id="privateKey" layoutX="57.0" layoutY="80.0" promptText="Enter private key..." onAction="#enterText"/>
+            <Button id="enterPrivateKey" layoutX="233.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getPrivateKey" text="Enter" />
+            <TextField id="publicKey" layoutX="325.0" layoutY="80.0" promptText="Enter public key..." />
+            <Button id="enterPublicKey" layoutX="504.0" layoutY="80.0" mnemonicParsing="false" text="Enter" />
+            <TextField id="amount" layoutX="57.0" layoutY="131.0" promptText="Enter amount..." />
+            <Button id="enterAmount" layoutX="233.0" layoutY="131.0" mnemonicParsing="false" text="Enter" />
+            <Button id="encrypt" layoutX="93.0" layoutY="186.0" mnemonicParsing="false" text="Encrypt Data" />
+            <Button id="decrypt" layoutX="378.0" layoutY="186.0" mnemonicParsing="false" text="Decrypt" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>
