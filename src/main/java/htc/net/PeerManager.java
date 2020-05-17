@@ -1,7 +1,6 @@
 package htc.net;
 
 import java.util.*;
-import java.util.concurrent.locks.*;
 
 import htc.chain.Block;
 import htc.net.packets.PeerReq;
