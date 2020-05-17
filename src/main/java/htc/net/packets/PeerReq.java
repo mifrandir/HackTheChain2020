@@ -1,7 +1,7 @@
 package htc.net.packets;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.IOException;
 
 import htc.net.Packet;
@@ -22,12 +22,12 @@ public class PeerReq extends Packet {
   }
 
   @Override
-  public void write(DataOutputStream out) throws IOException {
+  public void write(ObjectOutputStream out) throws IOException {
     // We don't need to write any content.
   }
 
   @Override
-  public void read(DataInputStream in) throws IOException {
+  public void read(ObjectInputStream in) throws IOException {
     // We don't need to read any content.
   }
 }

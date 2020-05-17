@@ -1,21 +1,25 @@
 package htc.net.packets;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.io.IOException;
-import htc.net.Peer;
 import htc.net.Packet;
 import htc.net.PacketType;
 
 public class PeerResp extends Packet {
-  private Peer[] peers;
+  private InetAddress[] peers;
 
   public PeerResp() {
     this.peers = null;
   }
 
-  public PeerResp(Peer[] peers) {
+  public PeerResp(InetAddress[] peers) {
     this.peers = peers;
+  }
+
+  public InetAddress[] getPeers() {
+    return this.peers; // Unsafe opeartion, but fine for now.
   }
 
   @Override
@@ -25,24 +29,28 @@ public class PeerResp extends Packet {
 
   @Override
   public boolean requiresResponse() {
-    return true;
+    return false;
   }
 
   @Override
-  public void write(DataOutputStream out) throws IOException {
+  public void write(ObjectOutputStream out) throws IOException {
     out.writeInt(this.peers.length);
-    for (Peer p : this.peers) {
-      p.write(out);
+    for (InetAddress addr : this.peers) {
+      out.writeObject(addr);
     }
   }
 
   @Override
-  public void read(DataInputStream in) throws IOException {
+  public void read(ObjectInputStream in) throws IOException {
     int n = in.readInt();
-    this.peers = new Peer[n];
+    this.peers = new InetAddress[n];
     for (int i = 0; i < n; i++) {
-      this.peers[i] = new Peer();
-      this.peers[i].read(in);
+      try {
+        this.peers[i] = (InetAddress) in.readObject();
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+        return;
+      }
     }
   }
-} 
+}

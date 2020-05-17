@@ -1,25 +1,24 @@
 package htc.net;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Map;
 import java.util.HashMap;
 
 public class Peer {
-  private static int nextID = 0;
   private static Map<Integer, Peer> instances = new HashMap<Integer, Peer>();
   private final int ID;
   private InetAddress addr;
 
-  public Peer() {
-    this.ID = nextID++;
+  public Peer(int id) {
+    this.ID = id;
     Peer.instances.put(this.ID, this);
   }
 
-  public Peer(InetAddress addr) {
-    this();
+  public Peer(int id, InetAddress addr) {
+    this(id);
     this.addr = addr;
   }
 
@@ -39,13 +38,13 @@ public class Peer {
     return addr;
   }
 
-  public void write(DataOutputStream out) throws IOException {
+  public void write(ObjectOutputStream out) throws IOException {
     byte[] a = addr.getAddress();
     out.write(a.length);
-    out.write(addr.getAddress());
+    out.write(a);
   }
 
-  public void read(DataInputStream in) throws IOException {
+  public void read(ObjectInputStream in) throws IOException {
     int n = in.readInt();
     byte[] a = new byte[n];
     in.read(a);
